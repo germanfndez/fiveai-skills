@@ -115,13 +115,6 @@ Overview and when to use. Link to rules/ and external docs.
 
 ---
 
-## Using these skills
-
-- **Download** — Clone this repo or download a skill folder (e.g. from the [FiveAI](https://fiveai.dev) site when available). Add the skill folder or its path to your AI agent’s rules/skills configuration.
-- **Consumers** — The [FiveAI landing](https://github.com/fiveai/fiveai-landing) can fetch skills from this repo via the GitHub API to build the site and provide zips; other tools can clone or read the repo directly.
-
----
-
 ## Links
 
 ### Official docs
@@ -132,6 +125,6 @@ Overview and when to use. Link to rules/ and external docs.
 
 ### Community
 
+- [FiveAI Discord](https://discord.gg/fiveai) — Our community: skills, support, and FiveM AI tools
 - [cfx.re forum](https://forum.cfx.re/) — FiveM & RedM discussion, support, and releases
 - [FiveM Discord](https://discord.gg/fivem) — Official FiveM community
-- [Overextended (Ox) Discord](https://discord.overextended.dev/) — ox_lib, oxmysql, ox_inventory, and other Ox resources
