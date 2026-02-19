@@ -124,10 +124,9 @@ Overview and when to use. Link to rules/ and external docs.
 
 - [FiveM documentation](https://docs.fivem.net/docs/)
 - [FiveM natives](https://docs.fivem.net/natives/)
-- [Ox documentation (ox_lib, oxmysql, etc.)](https://coxdocs.dev/)
 
 ### Community
 
-- [FiveAI Discord](https://discord.gg/fiveai) — Our community: skills, support, and FiveM AI tools
+- [FiveAI Discord](https://discord.com/invite/Nrzwx93NNw) — Our community: skills, support, and FiveM AI tools
 - [cfx.re forum](https://forum.cfx.re/) — FiveM & RedM discussion, support, and releases
 - [FiveM Discord](https://discord.gg/fivem) — Official FiveM community
