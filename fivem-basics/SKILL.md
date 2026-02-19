@@ -18,10 +18,11 @@ Best practices for FiveM — resources, manifest, client/server, events. Use thi
 
 Read individual rule files for detailed explanations and examples:
 
+- **rules/structure.md** — Resource structure and organization: scope, client/server separation, logical grouping, naming conventions.
 - **rules/fxmanifest.md** — Resource manifest (fxmanifest.lua): fx_version, game, client_scripts, server_script, files, dependencies.
 - **rules/client-server.md** — Client vs server scripts, shared code, communication patterns.
-- **rules/events.md** — Events in Lua: RegisterNetEvent, TriggerServerEvent, TriggerClientEvent, security.
+- **rules/events.md** — Events in Lua: RegisterNetEvent, TriggerServerEvent, TriggerClientEvent, naming conventions, security.
 - **rules/exports.md** — Defining and consuming exports between resources.
-- **rules/debugging.md** — Server vs client (F8) logs; when to ask the user for F8 logs if there’s no server-side error.
+- **rules/debugging.md** — Server vs client (F8) logs; when to ask the user for F8 logs if there's no server-side error.
 - **rules/optimization.md** — Lua/FiveM optimization: locals, loops, natives (PlayerPedId, vector distance), state bags, security, readability, folder structure.
 - **rules/reference-links.md** — Official docs and natives reference.
