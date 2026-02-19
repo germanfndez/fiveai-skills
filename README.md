@@ -15,6 +15,8 @@ Curated skills for **FiveM** (cfx.re) that give AI assistants and code agents ac
 A **skill** is a bundle of documentation and rules that an AI uses when helping you with a specific topic. For example:
 
 - **fivem-basics** — Resource structure, `fxmanifest.lua`, client/server scripting, events, exports, debugging, and optimization.
+- **esx-framework** — ESX Legacy: PlayerData, xPlayer, jobs, economy, inventory, weapons, events, callbacks, best practices.
+- **qbcore-framework** — QBCore: PlayerData, Player object, jobs, gangs, economy, inventory, events, callbacks, optimization.
 - **oxlib** — Ox Lib: UI (notify, alert, input, menu, progress), callbacks, commands, zones.
 - **oxmysql** — OxMySQL: queries, inserts, updates, transactions, placeholders.
 
