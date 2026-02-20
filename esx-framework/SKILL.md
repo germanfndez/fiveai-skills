@@ -1,6 +1,9 @@
 ---
 name: esx-framework
 description: ESX Legacy Framework for FiveM - Player management, jobs, economy, inventory, weapons. Use when creating ESX resources or working with xPlayer, PlayerData, ESX functions.
+author: germanfndez
+version: 1.0.0
+mcp-server: projecthub
 ---
 
 # ESX Framework Development

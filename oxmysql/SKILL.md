@@ -1,6 +1,9 @@
 ---
 name: oxmysql
 description: OxMySQL for FiveM — SQL integrations with MySQL/MariaDB. Use when writing or editing server-side database code: queries, inserts, updates, transactions, or any resource that uses oxmysql (query, insert, prepare, update, single, scalar, rawExecute, transaction). Docs: https://coxdocs.dev/oxmysql
+author: germanfndez
+version: 1.0.0
+mcp-server: projecthub
 ---
 
 # OxMySQL

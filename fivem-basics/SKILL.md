@@ -1,6 +1,9 @@
 ---
 name: fivem-basics
 description: FiveM resource structure, fxmanifest, client/server scripting, events. Use when creating or editing FiveM resources or Lua scripts, or when the user asks how FiveM works.
+author: germanfndez
+version: 1.0.0
+mcp-server: projecthub
 ---
 
 # FiveM basics

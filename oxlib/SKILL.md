@@ -1,6 +1,9 @@
 ---
 name: oxlib
 description: Ox Lib for FiveM — UI (notify, alert, input, menu, progress), callbacks client↔server, addCommand, zones (poly/box/sphere), keybinds, shared utilities. Use when writing resources that need ox_lib or when the user mentions notifications, dialogs, menus, zones/areas, or client-server communication. Docs: https://coxdocs.dev/ox_lib
+author: germanfndez
+version: 1.0.0
+mcp-server: projecthub
 ---
 
 # Ox Lib
