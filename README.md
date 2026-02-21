@@ -35,17 +35,17 @@ You can download skills from the web interface at **[usefiveai.vercel.app/skills
 
 The recommended way to install skills is with the `npx skills` command-line tool. It syncs with this repository and handles installation for different AI assistants and code editors.
 
-# Install via npx skills (Cursor, Claude Code, Codex, Copilot, etc.)
-npx skills add proelias7/fivem-skill
+### Install via npx skills (Cursor, Claude Code, Codex, Copilot, etc.)
+`npx skills add germanfndez/fiveai-skills`
 
-# Install globally (available in all projects)
-npx skills add proelias7/fivem-skill -g
+### Install globally (available in all projects)
+`npx skills add germanfndez/fiveai-skills -g`
 
-# Install only for Cursor
-npx skills add proelias7/fivem-skill -a cursor
+### Install only for Cursor
+`npx skills add germanfndez/fiveai-skills -a cursor`
 
-# List available skills
-npx skills add proelias7/fivem-skill --list
+### List available skills
+`npx skills add germanfndez/fiveai-skills --list`
 
 
 ---
