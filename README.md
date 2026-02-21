@@ -25,6 +25,31 @@ When you add a skill to your agent, it knows when to use it (“Use when…”) 
 
 ---
 
+## Installation
+
+### Manual download
+
+You can download skills from the web interface at **[usefiveai.vercel.app/skills](https://usefiveai.vercel.app/skills)** or by cloning this repository and copying the skill folders to your agent’s skills directory.
+
+### Install via `npx`
+
+The recommended way to install skills is with the `npx skills` command-line tool. It syncs with this repository and handles installation for different AI assistants and code editors.
+
+# Install via npx skills (Cursor, Claude Code, Codex, Copilot, etc.)
+npx skills add proelias7/fivem-skill
+
+# Install globally (available in all projects)
+npx skills add proelias7/fivem-skill -g
+
+# Install only for Cursor
+npx skills add proelias7/fivem-skill -a cursor
+
+# List available skills
+npx skills add proelias7/fivem-skill --list
+
+
+---
+
 ## Why skills matter for FiveM (cfx.re)
 
 FiveM and the cfx.re stack have their own:
