@@ -16,10 +16,13 @@ A **skill** is a bundle of documentation and rules that an AI uses when helping 
 
 - **lua-basics** — Effective Lua programming for FiveM: functions, tables, variables, conditionals, error handling, best practices.
 - **fivem-basics** — Resource structure, `fxmanifest.lua`, client/server scripting, events, exports, debugging, and optimization.
+- **fivem-nui** — FiveM NUI (New User Interface): HTML/CSS/JS, fullscreen UIs, NUI callbacks, messaging.
+- **fivem-security** — Security & Anti-Exploit: Server authority, event validation, distance checks, rate limiting.
 - **esx-framework** — ESX Legacy: PlayerData, xPlayer, jobs, economy, inventory, weapons, events, callbacks, best practices.
 - **qbcore-framework** — QBCore: PlayerData, Player object, jobs, gangs, economy, inventory, events, callbacks, optimization.
 - **oxlib** — Ox Lib: UI (notify, alert, input, menu, progress), callbacks, commands, zones.
 - **oxmysql** — OxMySQL: queries, inserts, updates, transactions, placeholders.
+- **fivemanage** — Fivemanage SDK: logs, images (takeImage, takeServerImage, uploadImage), configuration.
 
 When you add a skill to your agent, it knows when to use it (“Use when…”) and can follow the rules and references so its answers stay correct and on-topic. That’s especially important for FiveM, where patterns, APIs, and best practices are specific to the platform.
 
