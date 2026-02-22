@@ -7,3 +7,4 @@ Thumbs.db
 *.swo
 .idea
 .vscode
+__pycache__/
