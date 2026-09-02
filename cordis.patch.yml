@@ -1,0 +1,7 @@
+- insert:
+    - id: fiveai-skills
+      name: '@deepseek-ai/dsh-skill-filesystem'
+      config:
+        providerName: fiveai-skills
+        includeDefaultRoots: false
+        bundledSkillDir: !!js "process.getBuiltinModule('node:url').fileURLToPath(new URL('skills/', baseUrl))"

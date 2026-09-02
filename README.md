@@ -30,25 +30,111 @@ When you add a skill to your agent, it knows when to use it (“Use when…”) 
 
 ## Installation
 
-### Manual download
+FiveAI Skills can be installed as a native plugin in Codex, Cursor, Hermes, DeepSeek Harness, Claude Code, and CodeBuddy. The repository remains compatible with `npx skills` for users who only want the skill files.
 
-You can download skills from the web interface at **[usefiveai.vercel.app/skills](https://usefiveai.vercel.app/skills)** or by cloning this repository and copying the skill folders to your agent’s skills directory.
+### Codex
 
-### Install via `npx`
+```powershell
+codex plugin marketplace add wojzj57/fiveai-skills
+codex plugin add fiveai-skills@fiveai
+```
 
-The recommended way to install skills is with the `npx skills` command-line tool. It syncs with this repository and handles installation for different AI assistants and code editors.
+Refresh the marketplace before reinstalling an update:
 
-### Install via npx skills (Cursor, Claude Code, Codex, Copilot, etc.)
-`npx skills add germanfndez/fiveai-skills`
+```powershell
+codex plugin marketplace upgrade fiveai
+codex plugin add fiveai-skills@fiveai
+```
 
-### Install globally (available in all projects)
-`npx skills add germanfndez/fiveai-skills -g`
+Remove the plugin with `codex plugin remove fiveai-skills@fiveai`.
 
-### Install only for Cursor
-`npx skills add germanfndez/fiveai-skills -a cursor`
+### Cursor
 
-### List available skills
-`npx skills add germanfndez/fiveai-skills --list`
+For local or pre-publication use, clone the repository into Cursor's local plugin directory and reload Cursor:
+
+```powershell
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\plugins\local" | Out-Null
+git clone https://github.com/wojzj57/fiveai-skills "$env:USERPROFILE\.cursor\plugins\local\fiveai-skills"
+```
+
+Run **Developer: Reload Window**, then open **Customize** and confirm that the nine skills are listed. Teams and Enterprise organizations can import `wojzj57/fiveai-skills` from **Dashboard > Plugins > Team Marketplaces**. Update a local clone with `git pull --ff-only`; uninstall it by removing that local plugin directory.
+
+### Hermes Agent
+
+```powershell
+hermes plugins install wojzj57/fiveai-skills --no-enable
+hermes plugins list
+hermes plugins enable fiveai-skills
+```
+
+Use `skills_list` to find the qualified skill names and `skill_view` to load one. Run `hermes plugins update fiveai-skills` to update or `hermes plugins remove fiveai-skills` to uninstall.
+
+### DeepSeek Harness
+
+Install the repository as a bundle into the profile you use:
+
+```powershell
+dsh plugin --profile web add github:wojzj57/fiveai-skills
+dsh --profile web --dump-config
+```
+
+Restart the profile after installation. The bundle mounts the repository's canonical `skills/` directory through DeepSeek Harness's filesystem skill provider. To update, remove and add the bundle again:
+
+```powershell
+dsh plugin --profile web remove fiveai-skills
+dsh plugin --profile web add github:wojzj57/fiveai-skills
+```
+
+Replace `web` with another profile name when applicable.
+
+### Claude Code
+
+Run these commands inside Claude Code:
+
+```text
+/plugin marketplace add wojzj57/fiveai-skills
+/plugin install fiveai-skills@fiveai
+```
+
+Use `/plugin marketplace update fiveai` and `/plugin update fiveai-skills@fiveai` for updates. Uninstall with `/plugin uninstall fiveai-skills@fiveai`.
+
+### CodeBuddy
+
+Run these commands inside CodeBuddy:
+
+```text
+/plugin marketplace add wojzj57/fiveai-skills
+/plugin install fiveai-skills@fiveai
+```
+
+Use `/plugin marketplace update fiveai` and reinstall or update the plugin after a new release. Uninstall it from the `/plugin` manager.
+
+### Install skills only
+
+```powershell
+# Install for supported agents
+npx skills add wojzj57/fiveai-skills
+
+# Install globally
+npx skills add wojzj57/fiveai-skills -g
+
+# Install only for Cursor
+npx skills add wojzj57/fiveai-skills -a cursor
+
+# List available skills
+npx skills add wojzj57/fiveai-skills --list
+```
+
+You can also download individual skills from [usefiveai.vercel.app/skills](https://usefiveai.vercel.app/skills).
+
+### Validate a checkout
+
+The validator uses Node.js built-ins only and does not install dependencies:
+
+```powershell
+npm test
+npm run validate
+```
 
 
 ---
@@ -67,43 +153,39 @@ Generic AI knowledge often gets details wrong or suggests patterns that don’t 
 
 ## Community
 
-This repository is **open source** and **community-driven**. The goal is to give everyone in the FiveM / cfx.re ecosystem—developers, server owners, framework users—better AI assistance that actually understands the platform.
+This repository is **community-driven**. The goal is to give everyone in the FiveM / cfx.re ecosystem—developers, server owners, framework users—better AI assistance that actually understands the platform.
 
 - **Contributions welcome** — Whether you fix a typo, add a new skill, or improve an existing rule, your PR helps the whole community.
-- **Share and reuse** — Use these skills in your own projects, forks, or tools. Credit is appreciated but not required.
+- **Licensing** — This repository does not currently include a license file. Confirm redistribution terms with the repository owner before publishing copies or derivatives.
 - **Stay in sync with the ecosystem** — We align with official [FiveM](https://docs.fivem.net/) and [Ox](https://coxdocs.dev/) docs and with patterns used in the community so the AI stays accurate and up to date.
 
-If you have ideas, questions, or want to coordinate larger changes, open a [Discussion](https://github.com/fiveai/skills/discussions) or get in touch via the [FiveM forums](https://forum.cfx.re/) and community channels.
+If you have ideas, questions, or want to coordinate larger changes, open a [Discussion](https://github.com/wojzj57/fiveai-skills/discussions) or get in touch via the [FiveM forums](https://forum.cfx.re/) and community channels.
 
 ---
 
 ## Repository structure
 
-Each skill is a **folder** at the repo root. The folder name is the **slug** (e.g. `fivem-basics`, `oxlib`).
+The repository root is the plugin package. Skills remain under `skills/` as the single authored source used by every host.
 
 ```
 /
-├── README.md
-├── fivem-basics/
-│   ├── SKILL.md          # Main entry: name, description, when to use, links to rules
-│   └── rules/            # Detailed rules the AI should follow
-│       ├── fxmanifest.md
-│       ├── client-server.md
-│       ├── events.md
-│       └── ...
-├── oxlib/
-│   ├── SKILL.md
-│   └── rules/
-│       ├── init.md
-│       ├── callback.md
-│       ├── interface.md
-│       └── ...
-└── oxmysql/
-    ├── SKILL.md
-    └── rules/
-        ├── placeholders.md
-        ├── query.md
-        └── ...
+├── plugin.json                       # Agent Plugins manifest for Cursor and Hermes
+├── cordis.patch.yml                  # DeepSeek Harness bundle layer
+├── .codex-plugin/plugin.json         # Codex manifest
+├── .claude-plugin/                   # Claude manifest and marketplace
+├── .codebuddy-plugin/                # CodeBuddy manifest and marketplace
+├── .cursor-plugin/marketplace.json   # Cursor marketplace catalog
+├── .agents/plugins/marketplace.json  # Codex marketplace catalog
+├── scripts/validate-plugin.mjs       # Cross-host static validator
+├── tests/plugin-validation.test.mjs  # Validator behavior tests
+└── skills/
+    ├── fivem-basics/
+    │   ├── SKILL.md
+    │   └── rules/
+    ├── oxlib/
+    │   ├── SKILL.md
+    │   └── rules/
+    └── ...
 ```
 
 - **SKILL.md** — Required. Must have YAML frontmatter with `name` and `description` (the description should include “Use when…” so the agent knows when to activate the skill). The rest is Markdown (overview, when to use, links to rules/references).
@@ -115,7 +197,7 @@ Each skill is a **folder** at the repo root. The folder name is the **slug** (e.
 
 ### Adding a new skill
 
-1. Create a new folder at the root with a **slug** (lowercase, hyphens only), e.g. `my-new-skill`.
+1. Create `skills/<slug>/` using lowercase letters and hyphens, e.g. `skills/my-new-skill/`.
 2. Add **SKILL.md** with:
    - YAML frontmatter: `name` and `description` (include “Use when…”).
    - A short overview and a “When to use” section.

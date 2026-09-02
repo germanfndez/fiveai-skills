@@ -1,0 +1,20 @@
+{
+  "name": "fiveai",
+  "description": "FiveAI skills for FiveM development.",
+  "owner": {
+    "name": "wojzj57"
+  },
+  "plugins": [
+    {
+      "name": "fiveai-skills",
+      "version": "0.1.0",
+      "description": "Curated FiveM development skills for coding agents.",
+      "source": "./",
+      "author": {
+        "name": "wojzj57"
+      },
+      "homepage": "https://github.com/wojzj57/fiveai-skills#readme",
+      "repository": "https://github.com/wojzj57/fiveai-skills"
+    }
+  ]
+}
