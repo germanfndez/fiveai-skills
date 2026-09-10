@@ -333,13 +333,13 @@ npm run build
 
 ### Forgetting to add files to manifest
 
-❌ **Wrong:**
+**Wrong:**
 ```lua
 ui_page 'ui/index.html'
 -- Missing files array!
 ```
 
-✅ **Correct:**
+**Correct:**
 ```lua
 ui_page 'ui/index.html'
 files {
@@ -351,27 +351,27 @@ files {
 
 ### Wrong asset references
 
-❌ **Wrong:**
+**Wrong:**
 ```html
 <script src="./app.js"></script>
 <script src="/ui/app.js"></script>
 <script src="nui://my-resource/ui/app.js"></script>
 ```
 
-✅ **Correct:**
+**Correct:**
 ```html
 <script src="https://cfx-nui-my-resource/ui/app.js"></script>
 ```
 
 ### Not disabling focus
 
-❌ **Wrong:**
+**Wrong:**
 ```lua
 -- User closes UI but focus is still active
 -- Now they can't move or shoot!
 ```
 
-✅ **Correct:**
+**Correct:**
 ```lua
 RegisterNUICallback('close', function(data, cb)
     SetNUIFocus(false, false) -- Always disable focus!

@@ -305,7 +305,7 @@ RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
 end)
 ```
 
-**⚠️ NOTE**: Don't use both state bags AND events for the same purpose!
+**NOTE**: Don't use both state bags AND events for the same purpose!
 
 ## Configuration
 

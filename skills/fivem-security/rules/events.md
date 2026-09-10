@@ -1,8 +1,8 @@
-# 🛡️ Secure Event Handling
+# Secure Event Handling
 
 The single biggest vulnerability in FiveM development is trusting data sent from the client via `TriggerServerEvent`. **Hackers don't need complex menus; they just execute events with spoofed parameters.**
 
-## ❌ Bad Practice: Trusting the Client
+## Bad Practice: Trusting the Client
 
 Never let the client dictate the outcome.
 
@@ -18,7 +18,7 @@ RegisterNetEvent("job:payMe", function(amount)
 end)
 ```
 
-## ✅ Good Practice: Server Authority
+## Good Practice: Server Authority
 
 The client **requests** an action; the server **calculates** the result.
 
@@ -42,7 +42,7 @@ RegisterNetEvent("job:requestPayment", function()
 end)
 ```
 
-## 📍 Distance Checks (Crucial)
+## Distance Checks (Crucial)
 
 If a player triggers an event to "buy an item" or "harvest a plant," the server **MUST** check if they are actually physically near the location. Hackers can trigger events from across the map.
 
@@ -65,7 +65,7 @@ RegisterNetEvent("packages:givePackage", function()
 end)
 ```
 
-## 🛡️ Best Practices Summary
+## Best Practices Summary
 
 1. **Client requests, Server decides.** Never send prices, amounts, or sensitive item names from the client if it can be avoided.
 2. **Always perform Distance Checks** on the server using `GetEntityCoords(GetPlayerPed(source))`.

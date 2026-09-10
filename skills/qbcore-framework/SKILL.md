@@ -1,45 +1,62 @@
 ---
 name: qbcore-framework
-description: QBCore Framework for FiveM - Player management, jobs, gangs, economy, inventory. Use when creating QBCore resources or working with Player object, PlayerData, QBCore functions.
+description: "Trigger: QBCore, qb-core, Player object, PlayerData, QBCore.Functions.GetPlayer, Player.Functions, QBCore callbacks, jobs, gangs, economy. Build qb-core resources with player methods, callbacks and events."
+license: MIT
 metadata:
   author: germanfndez
   version: "1.0.0"
 ---
 
-# QBCore Framework Development
+# QBCore Framework
 
-Complete guide for developing with QBCore Framework — a comprehensive FiveM roleplay framework providing core functionalities and modules.
+Server/client API for qb-core: Player object, PlayerData, callbacks, jobs, gangs, money and metadata.
 
-## When to use
+## Activation Contract
 
-- Creating or editing QBCore resources/scripts
-- Working with player data (Player object, PlayerData)
-- Implementing jobs, gangs, economy, or inventory systems
-- Using QBCore client/server functions, callbacks, or events
-- Questions about QBCore best practices and optimization
+Load this skill when the user creates or edits a qb-core resource, touches `Player` / `QBCore.PlayerData`, needs jobs, gangs, money, items or metadata through QBCore, or asks about QBCore callbacks, events or best practices.
 
-## How to use
+This skill targets qb-core (qbcore-framework). If the user is on Qbox (`qbx_core`, `exports.qbx_core`), the APIs diverge: state it and do not apply this skill blindly.
 
-Read individual rule files for detailed explanations and examples:
+## Hard Rules
 
-- **rules/core-concepts.md** — QBCore architecture, PlayerData structure, Player object, framework initialization
-- **rules/client-functions.md** — Client-side QBCore functions, notifications, player state management
-- **rules/server-functions.md** — Server-side functions, player retrieval, callbacks, usable items
-- **rules/player-methods.md** — Player object methods: money, items, jobs, gangs, metadata, accounts
-- **rules/jobs-gangs.md** — Job system, gang system, payments, duty status
-- **rules/inventory-items.md** — Inventory management, item handling, usable items
-- **rules/events-callbacks.md** — QBCore events, server callbacks, client callbacks, event handling
-- **rules/best-practices.md** — QBCore coding standards, optimization, security, naming conventions
-- **rules/reference-links.md** — Official QBCore documentation links
+- Acquire the core once with `local QBCore = exports['qb-core']:GetCoreObject()`; never call it inside every function.
+- `Player` exists on the SERVER only (`QBCore.Functions.GetPlayer(source)`). `QBCore.PlayerData` exists on the CLIENT only, populated after `QBCore:Client:OnPlayerLoaded`.
+- Always nil-check: `if not Player then return end` before calling any method.
+- Money, jobs, gangs, items and metadata are mutated on the server through `Player.Functions.*`, never from the client.
+- Pass a `reason` to `AddMoney`, `RemoveMoney`, `SetMoney`.
+- Use state bags OR events for a given piece of state, never both.
+- Validate every client-supplied argument on the server; never trust amounts, prices or item names sent by the client.
+- Prefer ox_lib for notifications, menus, dialogs and progress bars.
+- Use dynamic `Wait()` values in loops; avoid `Wait(0)` unless per-frame work is required.
 
-## Key principles
+## Decision Gates
 
-1. **Always check for nil** — `if Player then ... end` before using Player object
-2. **Use QBCore.Functions.GetPlayer** — Standard player retrieval: `local Player = QBCore.Functions.GetPlayer(source)`
-3. **Wait for player load** — Check player loaded state on client before accessing PlayerData
-4. **Never trust client** — Validate all data server-side, secure your events
-5. **Follow QBCore patterns** — Use QBCore functions instead of reinventing (callbacks, notifications, etc.)
-6. **Optimize loops** — Cache player objects, use dynamic Wait times, avoid unnecessary calls
-7. **Use camelCase** — Follow Lua naming: `myVariable`, local over global
-8. **Minimal globals** — Keep variables local unless they need global scope
-9. **Use ox_lib for UI** — Prefer ox_lib for menus, dialogs, notifications, progress bars
+| Need | Use |
+|---|---|
+| Client asks server for data | `QBCore.Functions.CreateCallback` + `QBCore.Functions.TriggerCallback` |
+| Money | `Player.Functions.AddMoney/RemoveMoney/SetMoney/GetMoney(moneyType, ...)` |
+| Job / duty / gang | `Player.Functions.SetJob`, `SetJobDuty`, `SetGang` |
+| Persistent per-player flags | `Player.Functions.SetMetaData` / `GetMetaData` |
+| Items (qb-inventory) | `Player.Functions.AddItem/RemoveItem/GetItemByName/GetItemBySlot` |
+| Shared runtime state | state bags (see rules/core-concepts.md) |
+
+## Execution Steps
+
+1. Confirm `qb-core` starts before the resource; cache `QBCore` per side.
+2. Decide the side: mutation and validation on server, display on client.
+3. Fetch `Player`, nil-check, then validate every client-supplied argument.
+4. Pick the call from Decision Gates; read the matching rules file for signatures.
+5. Return data via callbacks, not paired events.
+
+## Output Contract
+
+Return runnable Lua with the client/server split explicit, `Player` nil-checked, and reasons on money operations. Use ox_lib for UI unless the user asks otherwise.
+
+## References
+
+- rules/core-concepts.md — architecture, PlayerData, Player object, events, state bags.
+- rules/player-methods.md — Player.Functions money, job, gang, metadata, items.
+- rules/best-practices.md — naming, caching, waits, state management, security.
+- rules/reference-links.md — official QBCore documentation links.
+
+Upstream docs: https://docs.qbcore.org

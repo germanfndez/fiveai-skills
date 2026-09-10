@@ -6,7 +6,7 @@ Guidelines for building performant, secure, and maintainable NUI interfaces.
 
 ### Minimize SendNUIMessage calls
 
-❌ **Bad:**
+**Bad:**
 ```lua
 -- Sending updates every frame (terrible for performance!)
 CreateThread(function()
@@ -20,7 +20,7 @@ CreateThread(function()
 end)
 ```
 
-✅ **Good:**
+**Good:**
 ```lua
 -- Only send when value changes significantly
 local lastSpeed = 0
@@ -42,14 +42,14 @@ end)
 
 ### Batch updates
 
-❌ **Bad:**
+**Bad:**
 ```lua
 SendNUIMessage({type = 'updateHealth', health = health})
 SendNUIMessage({type = 'updateArmor', armor = armor})
 SendNUIMessage({type = 'updateStamina', stamina = stamina})
 ```
 
-✅ **Good:**
+**Good:**
 ```lua
 SendNUIMessage({
     type = 'updateStats',
@@ -63,7 +63,7 @@ SendNUIMessage({
 
 ### Optimize DOM operations
 
-❌ **Bad:**
+**Bad:**
 ```js
 // Updating DOM on every message
 window.addEventListener('message', (event) => {
@@ -80,7 +80,7 @@ window.addEventListener('message', (event) => {
 });
 ```
 
-✅ **Good:**
+**Good:**
 ```js
 // Using document fragment for batch DOM updates
 window.addEventListener('message', (event) => {
@@ -102,7 +102,7 @@ window.addEventListener('message', (event) => {
 
 ### Use CSS animations instead of JavaScript
 
-❌ **Bad:**
+**Bad:**
 ```js
 function fadeIn(element) {
     let opacity = 0;
@@ -114,7 +114,7 @@ function fadeIn(element) {
 }
 ```
 
-✅ **Good:**
+**Good:**
 ```css
 .fade-in {
     animation: fadeIn 0.5s ease-in;
@@ -134,7 +134,7 @@ element.classList.add('fade-in');
 
 ### Always validate NUI callback data
 
-❌ **Bad:**
+**Bad:**
 ```lua
 RegisterNUICallback('transfer', function(data, cb)
     -- No validation!
@@ -143,7 +143,7 @@ RegisterNUICallback('transfer', function(data, cb)
 end)
 ```
 
-✅ **Good:**
+**Good:**
 ```lua
 RegisterNUICallback('transfer', function(data, cb)
     -- Validate all inputs

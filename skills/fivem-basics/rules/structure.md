@@ -48,18 +48,18 @@ If you have one resource scoped function which calls a few local single use func
 Resources should be named with underscores "_" instead of spaces. Other special characters should be avoided so that exports work well.
 
 **Examples:**
-- ✅ `my_awesome_resource`
-- ✅ `vehicle_shop`
-- ❌ `my awesome resource` (spaces)
-- ❌ `vehicle-shop!` (special characters)
+- Valid: `my_awesome_resource`
+- Valid: `vehicle_shop`
+- Invalid: `my awesome resource` (spaces)
+- Invalid: `vehicle-shop!` (special characters)
 
 ## File Naming
 
 Files should be named all lower case without any spaces. Dashes "-" or underscores "_" can be used instead of spaces.
 
 **Examples:**
-- ✅ `main.lua`
-- ✅ `player_manager.lua`
-- ✅ `vehicle-shop.lua`
-- ❌ `PlayerManager.lua` (camelCase)
-- ❌ `vehicle shop.lua` (spaces)
+- Valid: `main.lua`
+- Valid: `player_manager.lua`
+- Valid: `vehicle-shop.lua`
+- Invalid: `PlayerManager.lua` (camelCase)
+- Invalid: `vehicle shop.lua` (spaces)

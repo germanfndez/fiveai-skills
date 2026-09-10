@@ -1,45 +1,62 @@
 ---
 name: oxlib
-description: "Ox Lib for FiveM — UI (notify, alert, input, menu, progress), callbacks client↔server, addCommand, zones (poly/box/sphere), keybinds, shared utilities. Use when writing resources that need ox_lib or when the user mentions notifications, dialogs, menus, zones/areas, or client-server communication. Docs: https://coxdocs.dev/ox_lib"
+description: "Trigger: ox_lib, lib.notify, lib.alertDialog, lib.inputDialog, lib.callback, lib.addCommand, lib.zones, menus, progress bars, keybinds, client-server callbacks. Use ox_lib UI, callbacks, commands and zones."
+license: MIT
 metadata:
   author: germanfndez
   version: "1.0.0"
 ---
 
-# Ox Lib
+# ox_lib
 
-Standalone library for FiveM: reusable UI, callbacks, commands, and shared modules. Used by many Ox resources (ox_inventory, ox_target, etc.). Always prefer ox_lib over custom NUI or legacy patterns when the user wants notifications, dialogs, menus, or client-server calls.
+Shared FiveM library: UI (notify, dialogs, menus, progress), client/server callbacks, commands and zones via the global `lib`.
 
-## When to use
+## Activation Contract
 
-- User asks for notifications, alert dialogs, input dialogs, menus, progress bars, or TextUI.
-- Client needs to call server (or server calls client): use `lib.callback` / `lib.callback.await` and `lib.callback.register`.
-- Registering server commands with help and params: use `lib.addCommand`.
-- Keybinds, context menus, skill checks, locales, or shared helpers (lib.table, lib.string, etc.).
-- **Zones**: “when player enters/leaves area”, “is player inside” — use `lib.zones.poly`, `lib.zones.box`, `lib.zones.sphere` (prefer client; server has limited support for onEnter/onExit/inside).
+Load this skill when the user needs notifications, alert or input dialogs, menus, progress bars, TextUI, a client-server request/response, a typed server command, zones ("player enters/leaves area"), keybinds, or any resource that depends on ox_lib.
 
-## Setup
+## Hard Rules
 
-- In `fxmanifest.lua`: `shared_scripts { '@ox_lib/init.lua' }`. Optional: `ox_libs { 'locale', 'callback', ... }` to preload modules.
+- Add `shared_scripts { '@ox_lib/init.lua' }` to `fxmanifest.lua` and ensure `ox_lib` starts before the resource; without it `lib` is nil.
+- Prefer `lib.callback` / `lib.callback.await` over paired events or framework-specific callbacks for data across the network.
+- `lib.callback.register(name, function(source, ...))` on the server receives `source` first; validate arguments there.
+- Callback names must be unique (`resourcename:action`).
+- UI functions (`lib.notify`, `lib.alertDialog`, `lib.inputDialog`, `lib.progress`, `lib.context`, `lib.menu`, `lib.showTextUI`) render on the CLIENT; from the server trigger the client to call them.
+- Icons are Font Awesome 6, default style `solid`; brand icons use `{'fab', 'name'}`.
+- `lib.addCommand` is SERVER-side; use `restricted` for permissions and typed `params` (`number`, `playerId`, `string`, `longString`).
+- Zones: `onEnter`, `onExit` and `inside` do not work on the server; create zones on the client. Keep the returned zone to call `zone:remove()`.
+- Modules load on first use or via `ox_libs { ... }` / `lib.require`.
 
-## Rules
+## Decision Gates
 
-Read the rule that matches what you're doing:
+| Need | Call |
+|---|---|
+| Toast message | `lib.notify({ title, description, type })` |
+| Confirm / OK dialog | `lib.alertDialog({ header, content, centered, cancel })` |
+| Form input | `lib.inputDialog(title, rows)` |
+| Client asks server | `lib.callback.await(name, false, ...)` + server `lib.callback.register` |
+| Server asks client | `lib.callback.await(name, source, ...)` + client `lib.callback.register` |
+| Chat command with args | `lib.addCommand(name, { help, params, restricted }, cb)` |
+| Area trigger | `lib.zones.poly` / `lib.zones.box` / `lib.zones.sphere` |
 
-- **rules/init.md** — Adding ox_lib to fxmanifest, shared_script, ox_libs.
-- **rules/callback.md** — Client↔server: `lib.callback`, `lib.callback.await`, `lib.callback.register`.
-- **rules/interface.md** — UI: `lib.notify`, `lib.alertDialog`, `lib.inputDialog`; icons (Font Awesome 6).
-- **rules/addCommand.md** — Server commands: `lib.addCommand` with help, params, restricted.
-- **rules/zones.md** — Zones: `lib.zones.poly`, `lib.zones.box`, `lib.zones.sphere`; onEnter, onExit, inside; remove, contains, setDebug.
+## Execution Steps
 
-## References (look up if not covered in the rules above)
+1. Add the manifest line and start order (read rules/init.md).
+2. Pick the call from Decision Gates; read the matching rules file for the option table.
+3. Put request handling on the server callback; put UI on the client.
+4. Name callbacks and commands with the resource prefix.
+5. Store zone handles for removal.
 
-If something isn't covered in the rules above, check the official docs:
+## Output Contract
 
-- **Ox Lib (index):** https://coxdocs.dev/ox_lib  
-- **Interface (notify, alert, input, menu, progress, textui):** https://coxdocs.dev/ox_lib/Modules/Interface  
-- **Callback (client/server):** https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Server and …/Client  
-- **AddCommand:** https://coxdocs.dev/ox_lib/Modules/AddCommand/Server  
-- **Zones:** https://coxdocs.dev/ox_lib/Modules/Zones/Shared  
-- **AddKeybind:** https://coxdocs.dev/ox_lib/Modules/AddKeybind/Client  
-- **Locale, Table, String, Math, etc.:** navigate from https://coxdocs.dev/ox_lib
+Return runnable Lua using the global `lib`, with the manifest line when the resource is new and the client/server side explicit.
+
+## References
+
+- rules/init.md — fxmanifest, shared_script, ox_libs, lib.require.
+- rules/callback.md — lib.callback, await, register on both sides.
+- rules/interface.md — notify, alertDialog, inputDialog, other UI modules, icons.
+- rules/addCommand.md — server commands with help, params, restricted.
+- rules/zones.md — poly, box, sphere zones, methods and utilities.
+
+Upstream docs: https://overextended.dev/ox_lib

@@ -1,47 +1,64 @@
 ---
 name: esx-framework
-description: ESX Legacy Framework for FiveM - Player management, jobs, economy, inventory, weapons. Use when creating ESX resources or working with xPlayer, PlayerData, ESX functions.
+description: "Trigger: ESX, es_extended, xPlayer, PlayerData, ESX.GetPlayerFromId, ESX.RegisterServerCallback, ESX jobs, economy, inventory. Build ESX Legacy resources with server/client functions, xPlayer methods, callbacks and events."
+license: MIT
 metadata:
   author: germanfndez
   version: "1.0.0"
 ---
 
-# ESX Framework Development
+# ESX Framework
 
-Complete guide for developing with ESX Legacy Framework — the most trusted FiveM roleplay framework since 2017.
+Server/client API for ESX Legacy: xPlayer, PlayerData, callbacks, events, jobs and money.
 
-## When to use
+## Activation Contract
 
-- Creating or editing ESX resources/scripts
-- Working with player data (xPlayer, PlayerData)
-- Implementing jobs, economy, inventory, or weapon systems
-- Using ESX client/server functions, callbacks, or events
-- Questions about ESX best practices and optimization
+Load this skill when the user creates or edits an ESX resource, touches `xPlayer` or `ESX.PlayerData`, needs jobs, money, accounts, items or weapons through ESX, or asks about ESX callbacks, events or best practices.
 
-## How to use
+## Hard Rules
 
-Read individual rule files for detailed explanations and examples:
+- Get the object with `ESX = exports['es_extended']:getSharedObject()`. On the client, wait for `ESX` and `ESX.IsPlayerLoaded()` before reading `ESX.PlayerData`.
+- `xPlayer` exists on the SERVER only (`ESX.GetPlayerFromId(source)`). `ESX.PlayerData` exists on the CLIENT only.
+- Always nil-check: `if not xPlayer then return end` before calling any method.
+- Money, items, weapons, jobs and metadata are mutated on the server through `xPlayer.*` methods, never from the client.
+- Pass a `reason` to `addMoney`, `removeMoney`, `addAccountMoney`, `removeAccountMoney`.
+- Client callbacks (`ESX.TriggerClientCallback`, `ESX.AwaitClientCallback`) must never decide anything sensitive: the client can fake the answer.
+- Use `ESX.SecureNetEvent` for client events that only the server may trigger.
+- Prefer ox_lib for notifications, menus, dialogs and progress bars over ESX UI.
+- Cache `PlayerPedId()` and update on `esx:playerPedChanged`; never `Wait(0)` loops without need.
 
-- **rules/core-concepts.md** — ESX architecture, PlayerData, xPlayer object, framework initialization
-- **rules/client-functions.md** — Client-side ESX functions, UI systems, player state management
-- **rules/server-functions.md** — Server-side functions, player retrieval, callbacks, triggers
-- **rules/xplayer-methods.md** — xPlayer object methods: money, items, weapons, inventory, jobs, metadata
-- **rules/jobs-economy.md** — Job system, salaries, accounts (money/bank), society management
-- **rules/inventory-items.md** — Inventory system, item management, usable items, weight calculations
-- **rules/weapons-loadout.md** — Weapon system, loadout, components, ammo, tints
-- **rules/events-callbacks.md** — ESX events, server callbacks, client callbacks, secure net events
-- **rules/best-practices.md** — ESX coding standards, optimization, security, naming conventions
+## Decision Gates
 
-- **rules/reference-links.md** — Official ESX documentation links
+| Need | Use |
+|---|---|
+| Client asks server for data | `ESX.RegisterServerCallback` + `ESX.TriggerServerCallback` |
+| Server pushes an event to one player | `xPlayer.triggerEvent(name, ...)` |
+| Server-only client event | `ESX.SecureNetEvent(name, cb)` on the client |
+| Find player by source / identifier | `ESX.GetPlayerFromId` / `ESX.GetPlayerFromIdentifier` |
+| Filter players by job etc. | `ESX.GetExtendedPlayers(key, value)` |
+| Usable item | `ESX.RegisterUsableItem(item, cb)` |
+| Admin command with group | `ESX.RegisterCommand(name, group, cb, allowConsole, suggestion)` |
 
-## Key principles
+## Execution Steps
 
-1. **Always check for nil** — `if xPlayer then ... end` before using xPlayer
-2. **Use ESX.GetPlayerFromId** — Standard player retrieval: `local xPlayer = ESX.GetPlayerFromId(source)`
-3. **Wait for player load** — Check `ESX.IsPlayerLoaded()` on client before accessing PlayerData
-4. **Never trust client** — Validate all data server-side, use SecureNetEvent for client events
-5. **Follow ESX patterns** — Use ESX functions instead of reinventing (callbacks, notifications, etc.)
-6. **Optimize loops** — Cache player objects, avoid unnecessary GetPlayerFromId calls
-7. **Use camelCase** — Follow Lua naming: `myVariable`, `MyGlobalFunction`, `MY_CONSTANT`
-8. **Minimal globals** — Keep variables local unless they need global scope
-9. **Use ox_lib for UI** — Prefer ox_lib for menus, dialogs, notifications, progress bars instead of ESX UI
+1. Confirm `es_extended` starts before the resource; acquire `ESX` per side.
+2. Decide the side: mutation and validation on server, display on client.
+3. Fetch `xPlayer`, nil-check, then validate every client-supplied argument.
+4. Pick the call from Decision Gates; read the matching rules file for signatures.
+5. Return data via callbacks, not paired events.
+
+## Output Contract
+
+Return runnable Lua with the client/server split explicit, `xPlayer` nil-checked, and reasons on money operations. Use ox_lib for UI unless the user asks otherwise.
+
+## References
+
+- rules/core-concepts.md — architecture, PlayerData, xPlayer, startup flow.
+- rules/client-functions.md — client-side ESX functions and player state.
+- rules/server-functions.md — player retrieval, callbacks, commands, jobs, items.
+- rules/xplayer-methods.md — xPlayer money, accounts, inventory, weapons, meta.
+- rules/events-callbacks.md — server/client callbacks, events, SecureNetEvent.
+- rules/best-practices.md — naming, caching, loops, security, Lua 5.4.
+- rules/reference-links.md — official ESX documentation links.
+
+Upstream docs: https://docs.esx-framework.org
