@@ -1,6 +1,6 @@
 # FiveAI Skills
 
-Curated skills for **FiveM** (cfx.re) that give AI assistants and code agents accurate, up-to-date knowledge about the FiveM ecosystem. Use them in Cursor, VS Code, Claude Code, or any tool that supports skill/rule files.
+Curated skills for **FiveM** (cfx.re) that give AI assistants and code agents accurate, up-to-date knowledge about the FiveM ecosystem. Use them in Cursor, VS Code, Claude Code, or any tool that supports skill/rule files. Each skill has a guide with common mistakes, install steps and FAQ at [usefiveai.vercel.app/skills](https://usefiveai.vercel.app/skills/).
 
 ---
 
@@ -14,15 +14,17 @@ Curated skills for **FiveM** (cfx.re) that give AI assistants and code agents ac
 
 A **skill** is a bundle of documentation and rules that an AI uses when helping you with a specific topic. For example:
 
-- **lua-basics** — Effective Lua programming for FiveM: functions, tables, variables, conditionals, error handling, best practices.
-- **fivem-basics** — Resource structure, `fxmanifest.lua`, client/server scripting, events, exports, debugging, and optimization.
-- **fivem-nui** — FiveM NUI (New User Interface): HTML/CSS/JS, fullscreen UIs, NUI callbacks, messaging.
-- **fivem-security** — Security & Anti-Exploit: Server authority, event validation, distance checks, rate limiting.
-- **esx-framework** — ESX Legacy: PlayerData, xPlayer, jobs, economy, inventory, weapons, events, callbacks, best practices.
-- **qbcore-framework** — QBCore: PlayerData, Player object, jobs, gangs, economy, inventory, events, callbacks, optimization.
-- **oxlib** — Ox Lib: UI (notify, alert, input, menu, progress), callbacks, commands, zones.
-- **oxmysql** — OxMySQL: queries, inserts, updates, transactions, placeholders.
-- **fivemanage** — Fivemanage SDK: logs, images (takeImage, takeServerImage, uploadImage), configuration.
+- **[lua-basics](https://usefiveai.vercel.app/skills/lua-basics/)** — Effective Lua programming for FiveM: functions, tables, variables, conditionals, error handling, best practices.
+- **[fivem-basics](https://usefiveai.vercel.app/skills/fivem-basics/)** — Resource structure, `fxmanifest.lua`, client/server scripting, events, exports, debugging, and optimization.
+- **[fivem-nui](https://usefiveai.vercel.app/skills/fivem-nui/)** — FiveM NUI (New User Interface): HTML/CSS/JS, fullscreen UIs, NUI callbacks, messaging.
+- **[fivem-security](https://usefiveai.vercel.app/skills/fivem-security/)** — Security & Anti-Exploit: Server authority, event validation, distance checks, rate limiting.
+- **[esx-framework](https://usefiveai.vercel.app/skills/esx-framework/)** — ESX Legacy: PlayerData, xPlayer, jobs, economy, inventory, weapons, events, callbacks, best practices.
+- **[qbcore-framework](https://usefiveai.vercel.app/skills/qbcore-framework/)** — QBCore: PlayerData, Player object, jobs, gangs, economy, inventory, events, callbacks, optimization.
+- **[oxlib](https://usefiveai.vercel.app/skills/oxlib/)** — Ox Lib: UI (notify, alert, input, menu, progress), callbacks, commands, zones.
+- **[oxmysql](https://usefiveai.vercel.app/skills/oxmysql/)** — OxMySQL: queries, inserts, updates, transactions, placeholders.
+- **[ox-inventory](https://usefiveai.vercel.app/skills/ox-inventory/)** — ox_inventory: items, stashes, shops, hooks, and inventory exports.
+- **[ox-target](https://usefiveai.vercel.app/skills/ox-target/)** — ox_target: targetable entities, models, players and zones; qb-target migration.
+- **[fivemanage](https://usefiveai.vercel.app/skills/fivemanage/)** — Fivemanage SDK: logs, images (takeImage, takeServerImage, uploadImage), configuration.
 
 When you add a skill to your agent, it knows when to use it (“Use when…”) and can follow the rules and references so its answers stay correct and on-topic. That’s especially important for FiveM, where patterns, APIs, and best practices are specific to the platform.
 
@@ -234,6 +236,13 @@ Overview and when to use. Link to rules/ and external docs.
 
 - [FiveM documentation](https://docs.fivem.net/docs/)
 - [FiveM natives](https://docs.fivem.net/natives/)
+
+### Guides
+
+- [How to build a FiveM server with AI](https://usefiveai.vercel.app/blog/build-fivem-server-with-ai/)
+- [Why ChatGPT writes broken FiveM scripts](https://usefiveai.vercel.app/blog/why-chatgpt-fivem-scripts-break/)
+- [ESX vs QBCore vs Qbox in 2026](https://usefiveai.vercel.app/blog/esx-vs-qbcore-vs-qbox-2026/)
+- [txAdmin server won't start: 10 fixes](https://usefiveai.vercel.app/blog/txadmin-server-wont-start-fixes/)
 
 ### Community
 
