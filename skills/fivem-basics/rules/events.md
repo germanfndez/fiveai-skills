@@ -43,9 +43,9 @@ local function sendMessage(message)
     TriggerEvent('resourceName:server:checkProfanity', message)
 end
 
-RegisterNetEvent('resourceName:server:checkProfanity', source, message)
+RegisterNetEvent('resourceName:server:checkProfanity', function(message)
     checkProfanity(message)
-end
+end)
 ```
 
 **GOOD:**
@@ -54,9 +54,9 @@ local function sendMessage(message)
     TriggerEvent('resourceName:server:sentMessage', message)
 end
 
-RegisterNetEvent('resourceName:server:sentMessage', source, message)
+RegisterNetEvent('resourceName:server:sentMessage', function(message)
     checkProfanity(message)
-end
+end)
 ```
 
 ## When to use events vs functions
@@ -88,17 +88,28 @@ end)
 
 ### Validate on server
 
-Always validate the sender with **GetInvokingResource()** to avoid exploits:
+`GetInvokingResource()` is `nil` for EVERY net event that crosses the network, whether a real player or a cheater sent it. It cannot tell them apart, so it is NOT an authentication check. Treat every argument that arrives from a client as hostile and re-derive the truth on the server:
 
 ```lua
-RegisterNetEvent('shop:server:purchase')
-AddEventHandler('shop:server:purchase', function(itemId)
-  if GetInvokingResource() then return end -- only allow from same resource or trusted
-  -- ...
+RegisterNetEvent('shop:server:purchase', function(itemId, count)
+    local src = source
+
+    -- 1. Types and ranges: never trust the shape of the payload
+    if type(itemId) ~= 'string' then return end
+    count = tonumber(count)
+    if not count or count < 1 or count > 50 then return end
+
+    -- 2. Server-owned data: the client never sends a price
+    local price = Config.Items[itemId]
+    if not price then return end
+
+    -- 3. Physical plausibility: is the player actually at the shop?
+    local coords = GetEntityCoords(GetPlayerPed(src))
+    if #(coords - Config.ShopCoords) > 5.0 then return end
+
+    -- 4. Only now touch money or inventory
+    -- ...
 end)
 ```
 
-## Reference
-
-- Listening: https://docs.fivem.net/docs/scripting-manual/working-with-events/listening-for-events/
-- Triggering: https://docs.fivem.net/docs/scripting-manual/working-with-events/triggering-events/
+Rate-limit events that can be spammed (store the last call time per `source`) and log rejected calls: a burst of rejections from one player is the signature of a cheat menu.

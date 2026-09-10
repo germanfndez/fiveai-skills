@@ -213,7 +213,7 @@ RegisterNetEvent('QBCore:Player:SetPlayerData', function(val)
     PlayerData = val
 end)
 
--- ⚠️ DON'T USE BOTH STATE BAGS AND EVENTS FOR THE SAME PURPOSE
+-- WARNING: DON'T USE BOTH STATE BAGS AND EVENTS FOR THE SAME PURPOSE
 ```
 
 ## Security
@@ -253,7 +253,7 @@ RegisterNetEvent('garage:takeVehicle', function(plate)
     if not Player then return end
     
     -- Validate player owns this vehicle
-    local result = MySQL.Sync.fetchScalar('SELECT 1 FROM player_vehicles WHERE plate = ? AND citizenid = ?', {
+    local result = MySQL.scalar.await('SELECT 1 FROM player_vehicles WHERE plate = ? AND citizenid = ?', {
         plate,
         Player.PlayerData.citizenid
     })

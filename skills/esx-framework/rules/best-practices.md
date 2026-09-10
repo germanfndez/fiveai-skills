@@ -297,9 +297,9 @@ AddEventHandler('garage:takeVehicle', function(vehiclePlate)
     if not xPlayer then return end
     
     -- Validate player owns this vehicle
-    MySQL.Async.fetchScalar('SELECT 1 FROM owned_vehicles WHERE plate = @plate AND owner = @owner', {
-        ['@plate'] = vehiclePlate,
-        ['@owner'] = xPlayer.identifier
+    MySQL.scalar('SELECT 1 FROM owned_vehicles WHERE plate = ? AND owner = ?', {
+        vehiclePlate,
+        xPlayer.identifier
     }, function(result)
         if result then
             -- Player owns vehicle, spawn it
@@ -445,12 +445,12 @@ myresource/
 4. **Batch database operations**:
    ```lua
    -- GOOD: One query
-   MySQL.Async.execute('INSERT INTO logs (player, action) VALUES (?, ?), (?, ?)', {
+   MySQL.insert('INSERT INTO logs (player, action) VALUES (?, ?), (?, ?)', {
        player1, action1,
        player2, action2
    })
    
    -- BAD: Multiple queries
-   MySQL.Async.execute('INSERT INTO logs (player, action) VALUES (?, ?)', {player1, action1})
-   MySQL.Async.execute('INSERT INTO logs (player, action) VALUES (?, ?)', {player2, action2})
+   MySQL.insert('INSERT INTO logs (player, action) VALUES (?, ?)', {player1, action1})
+   MySQL.insert('INSERT INTO logs (player, action) VALUES (?, ?)', {player2, action2})
    ```

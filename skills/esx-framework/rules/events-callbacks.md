@@ -262,10 +262,10 @@ AddEventHandler('esx:setJob', function(playerId, job, lastJob)
     print(xPlayer.getName() .. ' changed from ' .. lastJob.name .. ' to ' .. job.name)
     
     -- Log job change
-    MySQL.Async.execute('INSERT INTO job_changes (identifier, old_job, new_job) VALUES (@identifier, @old, @new)', {
-        ['@identifier'] = xPlayer.identifier,
-        ['@old'] = lastJob.name,
-        ['@new'] = job.name
+    MySQL.insert('INSERT INTO job_changes (identifier, old_job, new_job) VALUES (?, ?, ?)', {
+        xPlayer.identifier,
+        lastJob.name,
+        job.name
     })
 end)
 ```
