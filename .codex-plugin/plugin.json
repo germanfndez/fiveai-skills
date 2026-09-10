@@ -1,0 +1,32 @@
+{
+  "name": "fiveai-skills",
+  "version": "0.1.0",
+  "description": "Curated FiveM development skills for coding agents.",
+  "author": {
+    "name": "wojzj57"
+  },
+  "homepage": "https://github.com/wojzj57/fiveai-skills#readme",
+  "repository": "https://github.com/wojzj57/fiveai-skills",
+  "keywords": [
+    "fivem",
+    "lua",
+    "skills",
+    "coding-agents"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "FiveAI Skills",
+    "shortDescription": "FiveM development knowledge for coding agents",
+    "longDescription": "Build, review, secure, and troubleshoot FiveM resources with focused skills for Lua, NUI, ESX, QBCore, Ox, and Fivemanage.",
+    "developerName": "wojzj57",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Help me build a secure FiveM resource.",
+      "Review this FiveM Lua code for correctness and exploits.",
+      "Explain how to use ox_lib in this resource."
+    ]
+  }
+}

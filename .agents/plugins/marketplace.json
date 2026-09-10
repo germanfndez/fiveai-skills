@@ -1,0 +1,21 @@
+{
+  "name": "fiveai",
+  "interface": {
+    "displayName": "FiveAI"
+  },
+  "plugins": [
+    {
+      "name": "fiveai-skills",
+      "version": "0.1.0",
+      "source": {
+        "source": "url",
+        "url": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
