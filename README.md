@@ -156,6 +156,7 @@ Generic AI knowledge often gets details wrong or suggests patterns that don’t 
 This repository is **open source** and **community-driven**. The goal is to give everyone in the FiveM / cfx.re ecosystem—developers, server owners, framework users—better AI assistance that actually understands the platform.
 
 - **Contributions welcome** — Whether you fix a typo, add a new skill, or improve an existing rule, your PR helps the whole community.
+- **Licensing** — Released under the [MIT License](LICENSE): free to use, modify, and redistribute, including commercially.
 - **Stay in sync with the ecosystem** — We align with official [FiveM](https://docs.fivem.net/) and [Ox](https://coxdocs.dev/) docs and with patterns used in the community so the AI stays accurate and up to date.
 
 If you have ideas, questions, or want to coordinate larger changes, open a [Discussion](https://github.com/germanfndez/fiveai-skills/discussions) or get in touch via the [FiveM forums](https://forum.cfx.re/) and community channels.
@@ -239,3 +240,7 @@ Overview and when to use. Link to rules/ and external docs.
 - [FiveAI Discord](https://discord.com/invite/Nrzwx93NNw) — Our community: skills, support, and FiveM AI tools
 - [cfx.re forum](https://forum.cfx.re/) — FiveM & RedM discussion, support, and releases
 - [FiveM Discord](https://discord.gg/fivem) — Official FiveM community
+
+## License
+
+[MIT](LICENSE) © Germán Fernández

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Validation tooling for the FiveAI multi-host skills plugin.",
+  "license": "MIT",
   "type": "module",
   "files": [
     "skills",
