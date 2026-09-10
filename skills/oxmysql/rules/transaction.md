@@ -32,4 +32,4 @@ await MySQL.transaction([
 ]);
 ```
 
-Reference: [transaction – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/transaction).
+Reference: [transaction – overextended.dev](https://overextended.dev/oxmysql/Functions/transaction).

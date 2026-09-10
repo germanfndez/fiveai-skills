@@ -58,4 +58,4 @@ lib.callback.register('ox:getNearbyVehicles', function(radius)
 end)
 ```
 
-Use a unique name (e.g. `resourcename:action`) to avoid clashes. Full docs: [Callback – coxdocs.dev](https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Server) and [Client](https://coxdocs.dev/ox_lib/Modules/Callback/Lua/Client).
+Use a unique name (e.g. `resourcename:action`) to avoid clashes. Full docs: [Callback – overextended.dev](https://overextended.dev/ox_lib/Modules/Callback/Lua/Server) and [Client](https://overextended.dev/ox_lib/Modules/Callback/Lua/Client).

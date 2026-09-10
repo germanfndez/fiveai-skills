@@ -26,4 +26,4 @@ end)
 MySQL.prepare('INSERT INTO ox_inventory (owner, name, data) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)', { owner, dbId, inventory })
 ```
 
-Reference: [prepare – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/prepare).
+Reference: [prepare – overextended.dev](https://overextended.dev/oxmysql/Functions/prepare).

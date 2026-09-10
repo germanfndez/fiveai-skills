@@ -26,4 +26,4 @@ const user = await MySQL.single('SELECT * FROM `users` WHERE `identifier` = ?', 
 // user is one object or null
 ```
 
-Reference: [single – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/single).
+Reference: [single – overextended.dev](https://overextended.dev/oxmysql/Functions/single).

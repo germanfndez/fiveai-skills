@@ -34,4 +34,4 @@ const rows = await MySQL.query('SELECT `firstname`, `lastname` FROM `users` WHER
 // rows is array of objects
 ```
 
-Reference: [query – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/query).
+Reference: [query – overextended.dev](https://overextended.dev/oxmysql/Functions/query).

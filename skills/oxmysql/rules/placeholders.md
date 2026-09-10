@@ -8,4 +8,4 @@ MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = ? AND `group` 
 
 Named placeholders (`@name`) are deprecated; use positional `?` and pass array. For prepared statements use **rules/prepare.md** (only `?` and `??` for column names).
 
-Reference: [Placeholders – coxdocs.dev](https://coxdocs.dev/oxmysql/placeholders).
+Reference: [Placeholders – overextended.dev](https://overextended.dev/oxmysql/placeholders).

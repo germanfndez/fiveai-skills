@@ -24,4 +24,4 @@ const count = await MySQL.scalar('SELECT COUNT(*) FROM `users` WHERE `group` = ?
 const name = await MySQL.scalar('SELECT `username` FROM `users` WHERE `identifier` = ?', [identifier]);
 ```
 
-Reference: [scalar – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/scalar).
+Reference: [scalar – overextended.dev](https://overextended.dev/oxmysql/Functions/scalar).

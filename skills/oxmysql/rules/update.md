@@ -22,4 +22,4 @@ end)
 const result = await MySQL.update('UPDATE `users` SET `lastname` = ? WHERE `identifier` = ?', [newLastName, identifier]);
 ```
 
-Always use `?` placeholders for values. Reference: [update – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/update).
+Always use `?` placeholders for values. Reference: [update – overextended.dev](https://overextended.dev/oxmysql/Functions/update).

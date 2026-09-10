@@ -16,4 +16,4 @@ MySQL.rawExecute('DELETE FROM `sessions` WHERE `expires` < NOW()', {}, function(
 end)
 ```
 
-Prefer **query**, **insert**, **update**, **single**, **scalar**, or **prepare** when they match the use case; use rawExecute only when necessary. Reference: [rawExecute – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/rawExecute).
+Prefer **query**, **insert**, **update**, **single**, **scalar**, or **prepare** when they match the use case; use rawExecute only when necessary. Reference: [rawExecute – overextended.dev](https://overextended.dev/oxmysql/Functions/rawExecute).

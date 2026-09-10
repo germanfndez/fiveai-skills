@@ -15,7 +15,7 @@ lib.notify({
 })
 ```
 
-Optional: `id` (string) for a unique notification so it only shows once when spammed; `iconColor`, `style`, `sound`, etc. See [Notifications](https://coxdocs.dev/ox_lib/Modules/Interface/Client/notify).
+Optional: `id` (string) for a unique notification so it only shows once when spammed; `iconColor`, `style`, `sound`, etc. See [Notifications](https://overextended.dev/ox_lib/Modules/Interface/Client/notify).
 
 ## lib.alertDialog — Simple alert / confirm
 
@@ -48,7 +48,7 @@ if not input then return end
 local name, amount, accepted = input[1], input[2], input[3]
 ```
 
-Row types: `input`, `number`, `checkbox`, `select`, `multi-select`, `slider`, `color`, `date`, `time`, `textarea`. See [Input Dialog](https://coxdocs.dev/ox_lib/Modules/Interface/Client/input).
+Row types: `input`, `number`, `checkbox`, `select`, `multi-select`, `slider`, `color`, `date`, `time`, `textarea`. See [Input Dialog](https://overextended.dev/ox_lib/Modules/Interface/Client/input).
 
 ## Other UI
 
@@ -57,4 +57,4 @@ Row types: `input`, `number`, `checkbox`, `select`, `multi-select`, `slider`, `c
 - **lib.context** — context menu.
 - **lib.menu** — list menu.
 
-Full list: [Interface – coxdocs.dev](https://coxdocs.dev/ox_lib/Modules/Interface).
+Full list: [Interface – overextended.dev](https://overextended.dev/ox_lib/Modules/Interface).

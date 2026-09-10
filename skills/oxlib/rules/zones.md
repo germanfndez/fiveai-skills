@@ -2,7 +2,7 @@
 
 Faster alternative to PolyZone. Use for “when player enters/leaves area” or “is player inside area”. **Note:** Server-side zones have limited support: `onEnter`, `onExit`, and `inside` do not work on server; use client for full behavior.
 
-Reference: [Zones (Shared) – coxdocs.dev](https://coxdocs.dev/ox_lib/Modules/Zones/Shared).
+Reference: [Zones (Shared) – overextended.dev](https://overextended.dev/ox_lib/Modules/Zones/Shared).
 
 ## lib.zones.poly — Polygon zone
 

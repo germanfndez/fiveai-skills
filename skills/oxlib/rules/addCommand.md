@@ -27,4 +27,4 @@ end)
 lib.addCommand({'giveitem', 'gi'}, { help = '...', params = { ... } }, cb)
 ```
 
-Docs: [AddCommand (Server) – coxdocs.dev](https://coxdocs.dev/ox_lib/Modules/AddCommand/Server).
+Docs: [AddCommand (Server) – overextended.dev](https://overextended.dev/ox_lib/Modules/AddCommand/Server).

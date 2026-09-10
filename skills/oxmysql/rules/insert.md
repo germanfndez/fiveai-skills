@@ -23,4 +23,4 @@ end)
 const insertId = await MySQL.insert('INSERT INTO `users` (identifier, firstname, lastname) VALUES (?, ?, ?)', [identifier, firstName, lastName]);
 ```
 
-Reference: [insert – coxdocs.dev](https://coxdocs.dev/oxmysql/Functions/insert).
+Reference: [insert – overextended.dev](https://overextended.dev/oxmysql/Functions/insert).
