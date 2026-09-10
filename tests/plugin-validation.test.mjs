@@ -134,9 +134,9 @@ test("host manifests must preserve canonical public metadata", () => {
     name: "fiveai-skills",
     version: "0.1.0",
     description: "Curated FiveM development skills for coding agents.",
-    author: { name: "wojzj57" },
-    homepage: "https://github.com/wojzj57/fiveai-skills#readme",
-    repository: "https://github.com/wojzj57/fiveai-skills",
+    author: { name: "germanfndez" },
+    homepage: "https://github.com/germanfndez/fiveai-skills#readme",
+    repository: "https://github.com/germanfndez/fiveai-skills",
   };
   const errors = validateHostManifest(
     "codebuddy",

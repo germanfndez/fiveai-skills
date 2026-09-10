@@ -35,7 +35,7 @@ FiveAI Skills can be installed as a native plugin in Codex, Cursor, Hermes, Deep
 ### Codex
 
 ```powershell
-codex plugin marketplace add wojzj57/fiveai-skills
+codex plugin marketplace add germanfndez/fiveai-skills
 codex plugin add fiveai-skills@fiveai
 ```
 
@@ -54,15 +54,15 @@ For local or pre-publication use, clone the repository into Cursor's local plugi
 
 ```powershell
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\plugins\local" | Out-Null
-git clone https://github.com/wojzj57/fiveai-skills "$env:USERPROFILE\.cursor\plugins\local\fiveai-skills"
+git clone https://github.com/germanfndez/fiveai-skills "$env:USERPROFILE\.cursor\plugins\local\fiveai-skills"
 ```
 
-Run **Developer: Reload Window**, then open **Customize** and confirm that the nine skills are listed. Teams and Enterprise organizations can import `wojzj57/fiveai-skills` from **Dashboard > Plugins > Team Marketplaces**. Update a local clone with `git pull --ff-only`; uninstall it by removing that local plugin directory.
+Run **Developer: Reload Window**, then open **Customize** and confirm that the nine skills are listed. Teams and Enterprise organizations can import `germanfndez/fiveai-skills` from **Dashboard > Plugins > Team Marketplaces**. Update a local clone with `git pull --ff-only`; uninstall it by removing that local plugin directory.
 
 ### Hermes Agent
 
 ```powershell
-hermes plugins install wojzj57/fiveai-skills --no-enable
+hermes plugins install germanfndez/fiveai-skills --no-enable
 hermes plugins list
 hermes plugins enable fiveai-skills
 ```
@@ -74,7 +74,7 @@ Use `skills_list` to find the qualified skill names and `skill_view` to load one
 Install the repository as a bundle into the profile you use:
 
 ```powershell
-dsh plugin --profile web add github:wojzj57/fiveai-skills
+dsh plugin --profile web add github:germanfndez/fiveai-skills
 dsh --profile web --dump-config
 ```
 
@@ -82,7 +82,7 @@ Restart the profile after installation. The bundle mounts the repository's canon
 
 ```powershell
 dsh plugin --profile web remove fiveai-skills
-dsh plugin --profile web add github:wojzj57/fiveai-skills
+dsh plugin --profile web add github:germanfndez/fiveai-skills
 ```
 
 Replace `web` with another profile name when applicable.
@@ -92,7 +92,7 @@ Replace `web` with another profile name when applicable.
 Run these commands inside Claude Code:
 
 ```text
-/plugin marketplace add wojzj57/fiveai-skills
+/plugin marketplace add germanfndez/fiveai-skills
 /plugin install fiveai-skills@fiveai
 ```
 
@@ -103,7 +103,7 @@ Use `/plugin marketplace update fiveai` and `/plugin update fiveai-skills@fiveai
 Run these commands inside CodeBuddy:
 
 ```text
-/plugin marketplace add wojzj57/fiveai-skills
+/plugin marketplace add germanfndez/fiveai-skills
 /plugin install fiveai-skills@fiveai
 ```
 
@@ -113,16 +113,16 @@ Use `/plugin marketplace update fiveai` and reinstall or update the plugin after
 
 ```powershell
 # Install for supported agents
-npx skills add wojzj57/fiveai-skills
+npx skills add germanfndez/fiveai-skills
 
 # Install globally
-npx skills add wojzj57/fiveai-skills -g
+npx skills add germanfndez/fiveai-skills -g
 
 # Install only for Cursor
-npx skills add wojzj57/fiveai-skills -a cursor
+npx skills add germanfndez/fiveai-skills -a cursor
 
 # List available skills
-npx skills add wojzj57/fiveai-skills --list
+npx skills add germanfndez/fiveai-skills --list
 ```
 
 You can also download individual skills from [usefiveai.vercel.app/skills](https://usefiveai.vercel.app/skills).
@@ -153,13 +153,12 @@ Generic AI knowledge often gets details wrong or suggests patterns that don’t 
 
 ## Community
 
-This repository is **community-driven**. The goal is to give everyone in the FiveM / cfx.re ecosystem—developers, server owners, framework users—better AI assistance that actually understands the platform.
+This repository is **open source** and **community-driven**. The goal is to give everyone in the FiveM / cfx.re ecosystem—developers, server owners, framework users—better AI assistance that actually understands the platform.
 
 - **Contributions welcome** — Whether you fix a typo, add a new skill, or improve an existing rule, your PR helps the whole community.
-- **Licensing** — This repository does not currently include a license file. Confirm redistribution terms with the repository owner before publishing copies or derivatives.
 - **Stay in sync with the ecosystem** — We align with official [FiveM](https://docs.fivem.net/) and [Ox](https://coxdocs.dev/) docs and with patterns used in the community so the AI stays accurate and up to date.
 
-If you have ideas, questions, or want to coordinate larger changes, open a [Discussion](https://github.com/wojzj57/fiveai-skills/discussions) or get in touch via the [FiveM forums](https://forum.cfx.re/) and community channels.
+If you have ideas, questions, or want to coordinate larger changes, open a [Discussion](https://github.com/germanfndez/fiveai-skills/discussions) or get in touch via the [FiveM forums](https://forum.cfx.re/) and community channels.
 
 ---
 

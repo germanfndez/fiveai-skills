@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "description": "Curated FiveM development skills for coding agents.",
   "author": {
-    "name": "wojzj57"
+    "name": "germanfndez"
   },
-  "homepage": "https://github.com/wojzj57/fiveai-skills#readme",
-  "repository": "https://github.com/wojzj57/fiveai-skills",
+  "homepage": "https://github.com/germanfndez/fiveai-skills#readme",
+  "repository": "https://github.com/germanfndez/fiveai-skills",
   "keywords": [
     "fivem",
     "lua",
@@ -18,7 +18,7 @@
     "displayName": "FiveAI Skills",
     "shortDescription": "FiveM development knowledge for coding agents",
     "longDescription": "Build, review, secure, and troubleshoot FiveM resources with focused skills for Lua, NUI, ESX, QBCore, Ox, and Fivemanage.",
-    "developerName": "wojzj57",
+    "developerName": "germanfndez",
     "category": "Developer Tools",
     "capabilities": [
       "Read"

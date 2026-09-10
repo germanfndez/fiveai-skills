@@ -6,8 +6,8 @@ const AGENT_PLUGIN_SCHEMA =
   "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json";
 const PLUGIN_NAME = "fiveai-skills";
 const MARKETPLACE_NAME = "fiveai";
-const PUBLISHER = "wojzj57";
-const REPOSITORY_URL = "https://github.com/wojzj57/fiveai-skills";
+const PUBLISHER = "germanfndez";
+const REPOSITORY_URL = "https://github.com/germanfndez/fiveai-skills";
 const SKILL_NAME_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const PORTABLE_PLUGIN_NAME_PATTERN =
   /^(?!.*(?:--|\.\.))[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/;

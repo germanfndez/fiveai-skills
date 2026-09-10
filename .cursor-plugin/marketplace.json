@@ -1,7 +1,7 @@
 {
   "name": "fiveai",
   "owner": {
-    "name": "wojzj57"
+    "name": "germanfndez"
   },
   "metadata": {
     "description": "FiveAI skills for FiveM development.",
@@ -14,10 +14,10 @@
       "description": "Curated FiveM development skills for coding agents.",
       "source": "./",
       "author": {
-        "name": "wojzj57"
+        "name": "germanfndez"
       },
-      "homepage": "https://github.com/wojzj57/fiveai-skills#readme",
-      "repository": "https://github.com/wojzj57/fiveai-skills",
+      "homepage": "https://github.com/germanfndez/fiveai-skills#readme",
+      "repository": "https://github.com/germanfndez/fiveai-skills",
       "category": "Developer Tools"
     }
   ]
