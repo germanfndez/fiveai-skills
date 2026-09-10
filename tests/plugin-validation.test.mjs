@@ -29,7 +29,7 @@ async function makeSkill(t, frontmatter, body = "# Example\n") {
   return skillDir;
 }
 
-test("the repository exposes all nine FiveAI skills as one valid plugin", async () => {
+test("the repository exposes all eleven FiveAI skills as one valid plugin", async () => {
   const result = await validateRepository(repoRoot);
 
   assert.deepEqual(result.errors, []);
@@ -40,6 +40,8 @@ test("the repository exposes all nine FiveAI skills as one valid plugin", async 
     "fivem-security",
     "fivemanage",
     "lua-basics",
+    "ox-inventory",
+    "ox-target",
     "oxlib",
     "oxmysql",
     "qbcore-framework",

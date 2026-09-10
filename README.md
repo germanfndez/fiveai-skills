@@ -57,7 +57,7 @@ New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\plugins\local" | O
 git clone https://github.com/germanfndez/fiveai-skills "$env:USERPROFILE\.cursor\plugins\local\fiveai-skills"
 ```
 
-Run **Developer: Reload Window**, then open **Customize** and confirm that the nine skills are listed. Teams and Enterprise organizations can import `germanfndez/fiveai-skills` from **Dashboard > Plugins > Team Marketplaces**. Update a local clone with `git pull --ff-only`; uninstall it by removing that local plugin directory.
+Run **Developer: Reload Window**, then open **Customize** and confirm that the eleven skills are listed. Teams and Enterprise organizations can import `germanfndez/fiveai-skills` from **Dashboard > Plugins > Team Marketplaces**. Update a local clone with `git pull --ff-only`; uninstall it by removing that local plugin directory.
 
 ### Hermes Agent
 
