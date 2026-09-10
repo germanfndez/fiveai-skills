@@ -187,7 +187,7 @@ function localReferences(content) {
   const references = new Set();
   const markdownLink = /!?\[[^\]]*\]\(([^)]+)\)/g;
   const bareBundledPath =
-    /(?:^|[\s`'"(])((?:rules|references|scripts|assets)\/[A-Za-z0-9._/-]+\.(?:md|json|ya?ml|lua|js|mjs|ts|py|sh))/gm;
+    /(?:^|[\s`'"(*_])((?:rules|references|scripts|assets)\/[A-Za-z0-9._/-]+\.(?:md|json|ya?ml|lua|js|mjs|ts|py|sh))/gm;
 
   for (const match of content.matchAll(markdownLink)) {
     const target = match[1].trim().replace(/^<|>$/g, "");
