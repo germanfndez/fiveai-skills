@@ -65,6 +65,26 @@ RegisterNetEvent("packages:givePackage", function()
 end)
 ```
 
+## NUI Callbacks Are Not Authentication
+
+`RegisterNUICallback` is not a security boundary. The NUI frame runs in the player's own browser process; a cheater can POST directly to any NUI endpoint without ever opening your UI, and can send any body they like.
+
+```lua
+-- CLIENT: this callback can be invoked directly by a cheater
+RegisterNUICallback('confirmPurchase', function(data, cb)
+    -- Reaching this function proves nothing about the player.
+    TriggerServerEvent('shop:buy', data.item, data.price)
+    cb({})
+end)
+```
+
+Two consequences:
+
+1. A NUI callback must **never** be the only gate before a `TriggerServerEvent`. Passing through your UI is not evidence that the player met any requirement.
+2. Every value the callback hands to the server must be re-derived or re-validated server-side, exactly as if it had come from a raw `TriggerServerEvent`. Price, quantity, item name, target id — all of it.
+
+The UI is a convenience for honest players. The server is the only thing standing between a cheater and your economy.
+
 ## Best Practices Summary
 
 1. **Client requests, Server decides.** Never send prices, amounts, or sensitive item names from the client if it can be avoided.

@@ -9,46 +9,59 @@ metadata:
 
 # FiveM Security
 
-Server-authority rules for FiveM net events: validation, distance checks, state verification and logging.
-
 ## Activation Contract
 
-Load this skill when writing or reviewing any `RegisterNetEvent` / `TriggerServerEvent` handler, any code that grants money, items, vehicles or permissions, or when the user asks about cheats, exploits or securing a resource.
+Load for any net event handler, code granting money, items, vehicles or permissions, admin commands, ban logic, or questions about cheats, exploits or hardening.
 
 ## Hard Rules
 
-- Never trust the client. The client REQUESTS an action; the server DECIDES the outcome from its own config and state.
-- Never accept prices, amounts, rewards or sensitive item names from the client. Derive them server-side (`Config.*`, server tables).
-- `GetInvokingResource()` is nil for every net event crossing the network, real player or cheater alike; it is NOT an authentication check. Validate types, ranges, server-owned data and distance instead.
-- Always distance-check on the server with `#(GetEntityCoords(GetPlayerPed(source)) - target)`; ~10 units is a safe latency margin.
-- Verify required state again on the server (job, item, "is working", cooldown), even if the client already checked.
-- Rate-limit critical events with server-side cooldowns.
-- Log suspicious activity (failed distance/state checks) for admins.
+- Never trust the client. The client REQUESTS; the server DECIDES from its own config and state.
+- Never accept prices, amounts, rewards or item names from the client. Derive them server-side.
+- `GetInvokingResource()` is nil for every net event crossing the network, player or cheater alike. NOT auth.
+- `RegisterNUICallback` is NOT authenticated: a cheater POSTs to any endpoint. Never the only gate before `TriggerServerEvent`.
+- Distance-check server-side: `#(GetEntityCoords(GetPlayerPed(source)) - target)`, ~10 units.
+- Re-verify state server-side (job, item, cooldown) even if the client checked.
+- Rate-limit critical events; clear per-source state in `playerDropped`.
+- Filter native game events (`weaponDamageEvent`, `startProjectileEvent`, `removeAllWeaponsEvent`, `ptFxEvent`) with `AddEventHandler` + `CancelEvent()`.
+- Authorize admin actions with ACE only: `IsPlayerAceAllowed(source, object)`. Never an identifier list.
+- Key persistent data on `license:`. `steam:` is absent for non-Steam launches.
+- The sandbox blocks writes outside the resource's own folder, `os.execute` and `io.tmpfile()`.
+- Log rejections. Escalate on counts, never auto-ban on one hit.
 
 ## Decision Gates
 
-| Client sends | Server does |
+| Situation | Reference |
 |---|---|
-| "pay me X" | ignore X; pay `Config` amount after verifying state |
-| "buy item Y at price P" | ignore P; look up price by Y server-side, check funds |
-| "harvest / loot / sell here" | distance check against known coords, then proceed |
-| any argument | check `type()`, `tonumber()`, range, then use |
-| repeated event | cooldown table keyed by `source`; drop if too soon |
+| Client-sent price, amount, or any argument | rules/events.md |
+| Repeated or spammable event | rules/rate-limiting.md |
+| Damage, projectile, weapon strip, particles | rules/net-game-events.md |
+| Admin command or admin-only event | rules/ace-permissions.md |
+| Ban, whitelist, persistent record | rules/identifiers.md |
+| Resource writes files or spawns processes | rules/sandbox.md |
+| Hardening the server itself | rules/server-convars.md |
 
 ## Execution Steps
 
-1. List every net event the resource exposes and what state it changes.
-2. For each, strip client-supplied values that the server can compute itself.
-3. Add type/range validation, distance check and state verification at the top of the handler; return early on failure.
-4. Add a cooldown for anything spammable.
-5. Log rejected attempts with `GetPlayerName(source)`.
+1. List every net event and NUI callback and the state each changes.
+2. Strip client values the server can compute itself.
+3. Add type/range, distance and state checks at the top; return early.
+4. Cooldown or token-bucket anything spammable; clean up on drop.
+5. Gate admin paths behind `IsPlayerAceAllowed`.
+6. Add game event filters for damage, projectiles, weapons.
+7. Log rejections with name and source id.
 
 ## Output Contract
 
-Return the hardened server handler(s) with validation, distance and state checks first, and note which client-sent parameters were removed.
+Return hardened handler(s) with validation, distance, ACE and state checks first; name the client parameters removed; include required `server.cfg` lines.
 
 ## References
 
-- rules/events.md — bad vs good event handling, distance checks, best practices.
+- rules/events.md — handlers, distance, NUI callbacks.
+- rules/net-game-events.md — game event payloads, cancelling.
+- rules/ace-permissions.md — principals, objects, ACE guards.
+- rules/rate-limiting.md — cooldowns, token buckets, cleanup.
+- rules/identifiers.md — `license:`, tokens, deferrals.
+- rules/sandbox.md — filesystem, process, convar limits.
+- rules/server-convars.md — hardening convars.
 
 Upstream docs: https://docs.fivem.net/docs/scripting-manual/
