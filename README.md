@@ -2,6 +2,8 @@
 
 Curated skills for **FiveM** (cfx.re) that give AI assistants and code agents accurate, up-to-date knowledge about the FiveM ecosystem. Use them in Cursor, VS Code, Claude Code, or any tool that supports skill/rule files. Each skill has a guide with common mistakes, install steps and FAQ at [usefiveai.vercel.app/skills](https://usefiveai.vercel.app/skills/).
 
+Want the AI to work on your server instead of in your editor? [FiveAI](https://usefiveai.vercel.app/) is a FiveM AI assistant that runs next to your server, reads your txAdmin console and resources, and uses these same skills.
+
 ---
 
 ## What is FiveM?
@@ -231,6 +233,12 @@ Overview and when to use. Link to rules/ and external docs.
 ---
 
 ## Links
+
+### FiveAI
+
+- [FiveAI, the FiveM AI assistant](https://usefiveai.vercel.app/)
+- [All FiveM skills with guides](https://usefiveai.vercel.app/skills/)
+- [FiveM blog](https://usefiveai.vercel.app/blog/)
 
 ### Official docs
 
